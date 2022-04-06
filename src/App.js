@@ -27,6 +27,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <h1 className="titles">gettting started</h1>
         <p>the count is {count}</p>
         <button onClick={() => setCount(count + 1)}>add 1</button>
         <button onClick={() => setCount(count - 1)}>minus 1</button>
@@ -36,11 +37,17 @@ function App() {
           value={name}
           onChange={handleInputChange}
         ></input>
-        <h1>gettting started</h1>
-        {pokeMons.map((pokeMon) => {
-          return <PokeMon pokeMon={pokeMon} />;
-        })}
+          <h1 className="titles">Accessing PokeAPI</h1> 
       </header>
+        <div className="centered">
+          <section className="cards">
+            {/* <div className="pokeCard"> */}
+              {pokeMons.map((pokeMon) => {
+                return <PokeMon pokeMon={pokeMon} />;
+              })}
+            {/* </div> */}
+          </section>
+        </div>
     </div>
   );
 }
