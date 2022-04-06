@@ -4,12 +4,12 @@ import Rodal from "rodal";
 // include styles
 import "rodal/lib/rodal.css";
 
-const PokeModal = ({ open, poKeyValuesPairs }) => {
+const PokeModal = ({ open, val }) => {
   return (
     <div>
       <Rodal visible={open} onClose={() => !open}>
-        <div>open</div>
-        <h1>{poKeyValuesPairs}</h1>
+        <div>open {val?.name}</div>
+        <h1>{val?.height}</h1>
       </Rodal>
     </div>
   );

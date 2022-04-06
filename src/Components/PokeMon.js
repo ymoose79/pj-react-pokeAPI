@@ -1,40 +1,27 @@
 // import { objectExpression } from "@babel/types";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import "./CSS/PokeMon.css";
 import Modal from "./PokeModal";
 
 const PokeMon = ({ pokeMon }) => {
-  const [pokeArr, setPokeArr] = useState([]);
-  // const [pokeAbilities, setPokeAbilities] = useState([]);
-  // const [pokeHeight, setPokeHeight] = useState([]);
-  // const [pokeWeight, setPokeWeight] = useState([]);
-
+  const [pokeArr, setPokeArr] = useState();
   const [open, setOpen] = useState(false);
-
-
 
   const pick = function (obj, arr) {
      const poKeyValuesPairs = arr.reduce(
       (acc, record) => (record in obj && (acc[record] = obj[record]), acc),
       {}
     );
-    console.log(poKeyValuesPairs);
+    setPokeArr(poKeyValuesPairs)
   };
 
   const getPokeData = (url) => {
     axios.get(url).then((res) => {
-      setPokeArr(res.data);
+      pick(res.data, ["abilities", "height", "weight", "sprites"]);
+      setOpen(!open)
     });
-    setOpen(!open)
   };
-
-  useEffect(() => {
-    if (pokeArr) {
-      pick(pokeArr, ["abilities", "height", "weight", "sprites"]);
-      //   console.log(pokeArr);
-    }
-  }, [pokeArr]);
 
   return (
     <>
@@ -46,7 +33,7 @@ const PokeMon = ({ pokeMon }) => {
         </section>
       </div>
       <div className="pokeCard-modal -hidden">
-        <Modal open={open} />
+        { pokeArr ? <Modal open={open} val={pokeArr} /> : null }
       </div>
     </>
   );
