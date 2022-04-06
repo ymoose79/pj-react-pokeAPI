@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Rodal from "rodal";
 
 // include styles
@@ -7,8 +7,15 @@ import "rodal/lib/rodal.css";
 const PokeModal = ({ open, val, openModalState }) => {
   return (
     <div>
-      <Rodal visible={open} onClose={() => {openModalState(false)}}>
-        <div>open {val?.name}</div>
+      <Rodal
+        visible={open}
+        width={800}
+        onClose={() => {
+          openModalState(false);
+        }}
+      >
+        <div>{val?.name}</div>
+        <img src={val.sprites.other.dream_world.front_default} alt={val.name}></img>
         <h1>{val?.height}</h1>
       </Rodal>
     </div>

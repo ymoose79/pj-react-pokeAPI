@@ -24,7 +24,7 @@ const PokeMon = ({ pokeMon }) => {
 
   const getPokeData = (url) => {
     axios.get(url).then((res) => {
-      pick(res.data, ["abilities", "height", "weight", "sprites"]);
+      pick(res.data, ["abilities", "height", "weight", "sprites", "name"]);
       setOpen(!open);
     });
   };
