@@ -4,10 +4,10 @@ import Rodal from "rodal";
 // include styles
 import "rodal/lib/rodal.css";
 
-const PokeModal = ({ open, val }) => {
+const PokeModal = ({ open, val, openModalState }) => {
   return (
     <div>
-      <Rodal visible={open} onClose={() => !open}>
+      <Rodal visible={open} onClose={() => {openModalState(false)}}>
         <div>open {val?.name}</div>
         <h1>{val?.height}</h1>
       </Rodal>
