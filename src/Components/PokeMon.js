@@ -2,15 +2,15 @@
 import axios from "axios";
 import React, { useState } from "react";
 import "./CSS/PokeMon.css";
-import Modal from "./PokeModal";
+import Modal from "./Modal";
 
 const PokeMon = ({ pokeMon }) => {
   const [pokeArr, setPokeArr] = useState();
   const [open, setOpen] = useState(false);
 
   // openModal handler f{}-  gets passed to child as prop, accepts param from child
-  const openModalState = (data) => {
-    setOpen(data);
+  const openModalState = () => {
+    setOpen(!open);
   };
 
   const pick = function (obj, arr) {
@@ -18,8 +18,9 @@ const PokeMon = ({ pokeMon }) => {
       (acc, record) => (record in obj && (acc[record] = obj[record]), acc),
       {}
     );
+
     setPokeArr(poKeyValuesPairs);
-    console.log(pokeArr)
+    console.log(poKeyValuesPairs.abilities)
   };
 
   const getPokeData = (url) => {
@@ -40,7 +41,7 @@ const PokeMon = ({ pokeMon }) => {
       </div>
       <div className="pokeCard-modal -hidden">
         {pokeArr ? (
-          <Modal open={open} val={pokeArr} openModalState={openModalState} />
+          <Modal open={open} val={pokeArr} openModalState={() => openModalState} />
         ) : null}
       </div>
     </>

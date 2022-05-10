@@ -41,11 +41,9 @@ function App() {
       </header>
         <div className="centered">
           <section className="cards">
-            {/* <div className="pokeCard"> */}
               {pokeMons.map((pokeMon) => {
                 return <PokeMon pokeMon={pokeMon} />;
               })}
-            {/* </div> */}
           </section>
         </div>
     </div>
